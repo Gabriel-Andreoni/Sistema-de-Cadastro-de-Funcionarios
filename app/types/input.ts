@@ -3,5 +3,5 @@ export type InputProps = {
     placeholder: string,
     name: string,
     onChange?: () => void
-    style: string,
+    className: string,
 }
