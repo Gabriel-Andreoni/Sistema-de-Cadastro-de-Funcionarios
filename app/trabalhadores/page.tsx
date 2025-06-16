@@ -1,6 +1,5 @@
-import { DeleteWorker } from "../actions/deleteWorker";
 import { getWorkers } from "../actions/getWorkers"
-import { UpdateWorker } from "../actions/updateWorker";
+import { DeleteButton } from "../components/DeleteButton";
 import { Modal } from "../components/modal";
 import { Trabalhador } from "../types/trabalhador";
 
@@ -38,15 +37,9 @@ export default async function Trabalhadores() {
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.email}</td>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.funcao}</td>
                             <td className="h-[54px] flex gap-2 items-center justify-center ">
-                                <form action={async () => {
-                                    "use server";
-                                    await DeleteWorker(item.id);
-                                }}>
-                                    <button type="submit" className="p-4 border-0 bg-red-500 cursor-pointer">Excluir</button>
-                                </form>
+                                <DeleteButton id={item.id} />
 
                                 <Modal data={item} />
-
                             </td>
                         </tr>
                     </tbody>

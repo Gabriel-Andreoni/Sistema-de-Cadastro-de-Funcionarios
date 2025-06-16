@@ -3,6 +3,8 @@
 import { UpdateWorker } from "@/app/actions/updateWorker";
 import { Trabalhador } from "@/app/types/trabalhador";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 type Props = {
     data: Trabalhador;
@@ -10,6 +12,7 @@ type Props = {
 
 export function Modal({ data }: Props) {
     const [isOpen, setIsOpen] = useState(false);
+
     const [newName, setNewName] = useState(data.nome || '');
     const [newIdade, setNewIdade] = useState(String(data.idade));
     const [newCpf, setNewCpf] = useState(data.cpf || '');
@@ -27,8 +30,10 @@ export function Modal({ data }: Props) {
             funcao: newFuncao,
         })
 
-        window.alert('Trabalhador atualizado com sucesso!');
+        toast.success('Trabalhador atualizado com sucesso!');
+
         setIsOpen(false);
+        redirect("/trabalhadores")
     }
     return (
         <div>

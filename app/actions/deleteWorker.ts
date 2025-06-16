@@ -3,7 +3,7 @@ import { Trabalhador } from "../types/trabalhador";
 
 
 export async function DeleteWorker(id:Partial<Trabalhador['id']>) {
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from('tb_trabalhadores')
         .delete()
         .eq('id', id);
@@ -11,6 +11,4 @@ export async function DeleteWorker(id:Partial<Trabalhador['id']>) {
     if (error) {
         throw new Error(`Error deleting worker: ${error.message}`);
     }
-
-    return data;
 }
