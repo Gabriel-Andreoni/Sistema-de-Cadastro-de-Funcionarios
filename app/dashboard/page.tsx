@@ -1,12 +1,13 @@
 import { CreateWorker } from "../actions/createWorker";
+import { getWorkers } from "../actions/getWorkers";
 import { Input } from "../components/Input";
 
-export function DashboardInfo() {
+export function DashboardInfo({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-4/12 h-52 bg-white shadow-md rounded-lg p-4 flex flex-col justify-center items-center">
-
+      {children}
     </div>
-  )
+  );
 }
 
 export function DashboardContent() {
@@ -65,18 +66,37 @@ export function DashboardContent() {
         />
       </div>
 
-      <button className="w-full p-4 bg-blue-500 rounded-lg font-bold text-white text-md cursor-pointer transition-colors hover:bg-blue-600">Cadastrar</button>
+      <button className="w-full p-4 bg-blue-500 rounded-lg font-bold text-white text-md cursor-pointer transition-colors hover:bg-blue-600">
+        Cadastrar
+      </button>
     </form>
-  )
+  );
 }
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    const workers = await getWorkers();
+    const workersAge = workers.map((worker) => Number(worker.idade));
+    const workerAgeSum = workersAge.reduce((acc, idade) => acc + idade, 0);
+    const workersAboveAge = workersAge.length > 0 ? workerAgeSum / workersAge.length : 0;
+
   return (
     <div className="w-full h-full p-6 flex flex-col justify-center items-center">
       <div className="w-full mt-4 flex gap-4 justify-between">
-        <DashboardInfo />
-        <DashboardInfo />
-        <DashboardInfo />
+        <DashboardInfo>
+          <div className="w-full flex flex-col items-center">
+            <span className="font-bold text-6xl text-blue-500">{workers.length}</span>
+            <span className="font-bold text-2xl text-slate-950">{workers.length > 1 ? 'Trabalhadores' : 'Trabalhador'}</span>
+          </div>
+        </DashboardInfo>
+        <DashboardInfo>
+          <div className="w-full flex flex-col items-center">
+            <span className="font-bold text-6xl text-blue-500">{workersAboveAge} anos</span>
+            <span className="font-bold text-2xl text-slate-950">Idade média dos Trabalhadores</span>
+          </div>
+        </DashboardInfo>
+        <DashboardInfo>
+          <h1>Oi</h1>
+        </DashboardInfo>
       </div>
 
       <DashboardContent />
