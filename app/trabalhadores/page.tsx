@@ -22,6 +22,7 @@ export default async function Trabalhadores() {
                     <tr className="bg-gray-700">
                         <th className="w-1/2 border border-gray-300 p-4 text-left font-light  text-gray-900 dark:border-gray-600 dark:text-gray-200">Nome</th>
                         <th className="w-auto border border-gray-300 p-4 text-left font-light  text-gray-900 dark:border-gray-600 dark:text-gray-200">Idade</th>
+                         <th className="w-auto border border-gray-300 p-4 text-left font-light  text-gray-900 dark:border-gray-600 dark:text-gray-200">Sexo</th>
                         <th className="w-auto border border-gray-300 p-4 text-left font-light  text-gray-900 dark:border-gray-600 dark:text-gray-200">CPF</th>
                         <th className="w-auto border border-gray-300 p-4 text-left  font-light text-gray-900 dark:border-gray-600 dark:text-gray-200">Email</th>
                         <th className="w-1/2 border border-gray-300 p-4 text-left font-light  text-gray-900 dark:border-gray-600 dark:text-gray-200">Cargo</th>
@@ -33,6 +34,7 @@ export default async function Trabalhadores() {
                         <tr>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.nome}</td>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.idade}</td>
+                            <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.sexo}</td>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.cpf}</td>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.email}</td>
                             <td className="border border-gray-300 p-4 text-gray-500 dark:border-gray-700 dark:text-gray-400">{item.funcao}</td>

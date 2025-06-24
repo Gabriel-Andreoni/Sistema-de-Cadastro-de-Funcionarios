@@ -16,7 +16,8 @@ export async function CreateWorker(formData: FormData) {
       cpf: formData.get("CPF"),
       email: formData.get("email"),
       funcao: formData.get("cargo"),
-      user_id: userId
+      user_id: userId,
+      sexo: formData.get("sexo"),
     });
 
 

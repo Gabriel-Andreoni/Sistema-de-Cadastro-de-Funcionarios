@@ -39,6 +39,33 @@ export function DashboardContent() {
         />
       </div>
       <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
+        <span className="font-bold text-slate-950">Sexo:</span>
+        <>
+          <label
+          className="text-slate-950"
+          htmlFor="masculino">Masculino</label>
+          <Input
+            className="w-auto p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
+            type="radio"
+            name="sexo"
+            value="Masculino"
+            id="masculino"
+          />
+        </>
+        <>
+          <label
+          className="text-slate-950"
+          htmlFor="feminino">Femenino</label>
+          <Input
+            className="w-auto p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
+            type="radio"
+            name="sexo"
+            value="Feminino"
+            id="feminino"
+          />
+        </>
+      </div>
+      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
         <span className="font-bold text-slate-950">CPF:</span>
         <Input
           className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
@@ -74,10 +101,10 @@ export function DashboardContent() {
 }
 
 export default async function Dashboard() {
-    const workers = await getWorkers();
-    const workersAge = workers.map((worker) => Number(worker.idade));
-    const workerAgeSum = workersAge.reduce((acc, idade) => acc + idade, 0);
-    const workersAboveAge = workersAge.length > 0 ? workerAgeSum / workersAge.length : 0;
+  const workers = await getWorkers();
+  const workersAge = workers.map((worker) => Number(worker.idade));
+  const workerAgeSum = workersAge.reduce((acc, idade) => acc + idade, 0);
+  const workersAboveAge = workersAge.length > 0 ? workerAgeSum / workersAge.length : 0;
 
   return (
     <div className="w-full h-full p-6 flex flex-col justify-center items-center">
@@ -91,7 +118,7 @@ export default async function Dashboard() {
         <DashboardInfo>
           <div className="w-full flex flex-col items-center">
             <span className="font-bold text-6xl text-blue-500">{workersAboveAge} anos</span>
-            <span className="font-bold text-2xl text-slate-950">Idade média dos Trabalhadores</span>
+            <span className="font-bold text-2xl text-slate-950">Idade média</span>
           </div>
         </DashboardInfo>
         <DashboardInfo>
