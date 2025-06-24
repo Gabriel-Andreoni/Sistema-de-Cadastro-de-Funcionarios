@@ -3,8 +3,8 @@
 import { UpdateWorker } from "@/app/actions/updateWorker";
 import { Trabalhador } from "@/app/types/trabalhador";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import { Toast } from "../Toast";
 
 type Props = {
     data: Trabalhador;
@@ -30,7 +30,7 @@ export function Modal({ data }: Props) {
             funcao: newFuncao,
         })
 
-        toast.success('Trabalhador atualizado com sucesso!');
+        Toast('Trabalhador atualizado com sucesso!');
 
         setIsOpen(false);
         redirect("/trabalhadores")

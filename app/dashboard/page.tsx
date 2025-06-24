@@ -1,6 +1,5 @@
-import { CreateWorker } from "../actions/createWorker";
 import { getWorkers } from "../actions/getWorkers";
-import { Input } from "../components/Input";
+import { DashboardContent } from "../components/DashboardContent";
 
 export function DashboardInfo({ children }: { children: React.ReactNode }) {
   return (
@@ -10,95 +9,6 @@ export function DashboardInfo({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function DashboardContent() {
-  return (
-    <form
-      className="w-full h-full mt-8 p-4 flex flex-col gap-2 rounded-lg bg-white"
-      action={async (formData: FormData) => {
-        "use server";
-
-        await CreateWorker(formData);
-      }}
-    >
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">Nome:</span>
-        <Input
-          className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-          placeholder="ex: Gabriel Andreoni"
-          type="text"
-          name="nome"
-        />
-      </div>
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">Idade:</span>
-        <Input
-          className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-          placeholder="ex: 28"
-          type="text"
-          name="idade"
-        />
-      </div>
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">Sexo:</span>
-        <>
-          <label
-          className="text-slate-950"
-          htmlFor="masculino">Masculino</label>
-          <Input
-            className="w-auto p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-            type="radio"
-            name="sexo"
-            value="Masculino"
-            id="masculino"
-          />
-        </>
-        <>
-          <label
-          className="text-slate-950"
-          htmlFor="feminino">Femenino</label>
-          <Input
-            className="w-auto p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-            type="radio"
-            name="sexo"
-            value="Feminino"
-            id="feminino"
-          />
-        </>
-      </div>
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">CPF:</span>
-        <Input
-          className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-          placeholder="ex: 123.456.789-00"
-          type="text"
-          name="CPF"
-        />
-      </div>
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">Email:</span>
-        <Input
-          className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-          placeholder="ex: 123.456.789-00"
-          type="text"
-          name="email"
-        />
-      </div>
-      <div className="w-full p-4 flex gap-2 items-center rounded-lg bg-[#F6F6F6]">
-        <span className="font-bold text-slate-950">Cargo:</span>
-        <Input
-          className="w-11/12 p-2 text-slate-950 outline-none font-bold placeholder:text-gray-300"
-          placeholder="ex: Programador"
-          type="text"
-          name="cargo"
-        />
-      </div>
-
-      <button className="w-full p-4 bg-blue-500 rounded-lg font-bold text-white text-md cursor-pointer transition-colors hover:bg-blue-600">
-        Cadastrar
-      </button>
-    </form>
-  );
-}
 
 export default async function Dashboard() {
   const workers = await getWorkers();
@@ -106,23 +16,35 @@ export default async function Dashboard() {
   const workerAgeSum = workersAge.reduce((acc, idade) => acc + idade, 0);
   const workersAboveAge = workersAge.length > 0 ? workerAgeSum / workersAge.length : 0;
 
+  const maleWorkers = workers.filter((worker) => worker.sexo === "Masculino");
+  const femaleWorkers = workers.filter((worker) => worker.sexo === "Feminino");
+
   return (
     <div className="w-full h-full p-6 flex flex-col justify-center items-center">
       <div className="w-full mt-4 flex gap-4 justify-between">
         <DashboardInfo>
           <div className="w-full flex flex-col items-center">
             <span className="font-bold text-6xl text-blue-500">{workers.length}</span>
-            <span className="font-bold text-2xl text-slate-950">{workers.length > 1 ? 'Trabalhadores' : 'Trabalhador'}</span>
+            <span className="font-bold text-xl text-slate-950">{workers.length > 1 ? 'Trabalhadores' : 'Trabalhador'}</span>
           </div>
         </DashboardInfo>
         <DashboardInfo>
           <div className="w-full flex flex-col items-center">
-            <span className="font-bold text-6xl text-blue-500">{workersAboveAge} anos</span>
-            <span className="font-bold text-2xl text-slate-950">Idade média</span>
+            <span className="font-bold text-6xl text-blue-500">{Math.trunc(workersAboveAge)} anos</span>
+            <span className="font-bold text-xl text-slate-950">Idade média</span>
           </div>
         </DashboardInfo>
         <DashboardInfo>
-          <h1>Oi</h1>
+          <div className="w-full flex flex-col items-center">
+            <span className="font-bold text-6xl text-blue-500">{maleWorkers.length}</span>
+            <span className="font-bold text-xl text-slate-950">{maleWorkers.length > 1 ? 'Trabalhadores' : 'Trabalhador'} Masculino</span>
+          </div>
+        </DashboardInfo>
+        <DashboardInfo>
+          <div className="w-full flex flex-col items-center">
+            <span className="font-bold text-6xl text-blue-500">{femaleWorkers.length}</span>
+            <span className="font-bold text-xl text-slate-950">{femaleWorkers.length > 1 ? 'Trabalhadoras Femininas' : 'Trabalhadora Feminina'}</span>
+          </div>
         </DashboardInfo>
       </div>
 

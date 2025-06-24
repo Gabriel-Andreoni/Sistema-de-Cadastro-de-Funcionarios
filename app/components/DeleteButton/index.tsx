@@ -3,13 +3,13 @@
 import { DeleteWorker } from "@/app/actions/deleteWorker";
 import { Trabalhador } from "@/app/types/trabalhador";
 import { redirect } from "next/navigation";
-import toast from "react-hot-toast";
+import { Toast } from "../Toast";
 
 export function DeleteButton({ id }: { id: Trabalhador['id'] }) {
 
     const handleDelete = async () => {
         await DeleteWorker(id);
-        toast.success("Trabalhador excluído com sucesso!");
+        Toast("Trabalhador excluído com sucesso!");
 
         redirect("/trabalhadores");
 
