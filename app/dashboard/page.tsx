@@ -37,7 +37,7 @@ export default async function Dashboard() {
         <DashboardInfo>
           <div className="w-full flex flex-col items-center">
             <span className="font-bold text-6xl text-blue-500">{maleWorkers.length}</span>
-            <span className="font-bold text-xl text-slate-950">{maleWorkers.length > 1 ? 'Trabalhadores' : 'Trabalhador'} Masculino</span>
+            <span className="font-bold text-xl text-slate-950">{maleWorkers.length > 1 ? 'Trabalhadores Masculinos' : 'Trabalhador Masculino'}</span>
           </div>
         </DashboardInfo>
         <DashboardInfo>

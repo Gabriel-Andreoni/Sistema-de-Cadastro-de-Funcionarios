@@ -6,6 +6,10 @@ import { useState } from "react";
 import { redirect } from "next/navigation";
 import { Toast } from "../Toast";
 
+import Image from "next/image";
+
+import CloseIcon from './images/close-icon.png';
+
 type Props = {
     data: Trabalhador;
 }
@@ -44,10 +48,18 @@ export function Modal({ data }: Props) {
             </button>
 
             {isOpen && (
-                <div className="w-[500px] h-[500px] m-auto p-2 bg-white absolute inset-0">
+                <div className="w-[500px] h-[500px] m-auto p-2 bg-white absolute inset-0 rounded-lg">
+                    <Image
+                    className="absolute right-2 cursor-pointer"
+                    src={CloseIcon}
+                    width={30} 
+                    height={30}
+                    alt="ícone de fechar"
+                    onClick={() => setIsOpen(false)}
+                    />
                     <form
                         onSubmit={handleSubmit}
-                        className="w-full h-full p-2 border">
+                        className="w-full h-auto mt-10 p-2 border">
                         <h1 className="text-2xl font-bold mb-4 text-slate-950">Editar trabalhador</h1>
                         <input
                             type="text"
