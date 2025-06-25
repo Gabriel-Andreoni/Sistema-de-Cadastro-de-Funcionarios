@@ -17,7 +17,7 @@ export async function Header() {
                 }} />
             </SignedIn>
 
-            {userId ? <Link prefetch className="text-slate-950" href="/dashboard">Dashboard</Link> : <Link className="text-slate-950" href="/login">Login</Link>}
+            {userId ? <Link prefetch className="text-slate-950" href="/dashboard">Dashboard</Link> : ''}
             {userId ? <Link prefetch className="text-slate-950" href="/trabalhadores">Trabalhadores</Link> : ''}
         </header>
     )
