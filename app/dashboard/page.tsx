@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import { getWorkers } from "../actions/getWorkers";
 import { DashboardContent } from "../components/DashboardContent";
 
@@ -11,6 +13,12 @@ export function DashboardInfo({ children }: { children: React.ReactNode }) {
 
 
 export default async function Dashboard() {
+  const {userId} = await auth();
+
+  if(!userId) {
+    return redirect("/login?redirect_url=/dashboard");
+  }
+
   const workers = await getWorkers();
   const workersAge = workers.map((worker) => Number(worker.idade));
   const workerAgeSum = workersAge.reduce((acc, idade) => acc + idade, 0);
