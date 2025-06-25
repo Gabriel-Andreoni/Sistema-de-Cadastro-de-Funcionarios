@@ -26,7 +26,7 @@ export default async function Trabalhadores() {
                         <th className="w-auto border border-gray-300 p-4 text-left font-bold text-gray-900 dark:border-gray-600">CPF</th>
                         <th className="w-auto border border-gray-300 p-4 text-left font-bold text-gray-900 dark:border-gray-600">Email</th>
                         <th className="w-1/2 border border-gray-300 p-4 text-left font-bold text-gray-900 dark:border-gray-600">Cargo</th>
-                        <th className="w-1/2 border border-gray-300 p-4 text-left font-bold text-gray-900 dark:border-gray-600">Acões</th>
+                        <th className="w-1/2 border border-gray-300 p-4 text-left font-bold text-gray-900 dark:border-gray-600">Ações</th>
                     </tr>
                 </thead>
                 {workers.map((item: Trabalhador, index: number) => (
